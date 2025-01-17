@@ -1,5 +1,5 @@
 <script setup>
-    import PageBlock from "../page-block/PageBlock.vue";
+    import PageBlock from "@/components/organisms/page-block/PageBlock.vue";
 </script>
 
 <template>
