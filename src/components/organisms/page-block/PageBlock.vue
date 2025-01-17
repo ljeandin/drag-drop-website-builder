@@ -34,6 +34,10 @@
         blockStore.updateBlock(blockId, content);
         resizeTextArea(textarea);
     };
+
+    const onDeleteBlock = (blockId) => {
+        blockStore.deleteBlock(blockId);
+    };
 </script>
 
 <template>
@@ -53,6 +57,7 @@
             </button>
             <button
                 class="page-block__header-button button button--with-border"
+                @click="onDeleteBlock(blockId)"
             >
                 Delete
             </button>

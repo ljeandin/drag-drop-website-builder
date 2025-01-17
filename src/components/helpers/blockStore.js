@@ -32,4 +32,14 @@ export const blockStore = reactive({
             );
         }
     },
+
+    deleteBlock(blockId) {
+        this.blocks = this.blocks.filter(
+            (block) => blockId !== block.id
+        );
+        localStorage.setItem(
+            "blockList",
+            JSON.stringify(this.blocks)
+        );
+    },
 });
