@@ -1,3 +1,25 @@
 .page-block {
-    border: 1px solid $color-primary;
+    border: $stroke-width solid $color-primary;
+
+    &__header {
+        display: flex;
+        justify-content: flex-end;
+        gap: 2 * $spacing;
+        background-color: $color-primary;
+        padding: $spacing 2 * $spacing;
+    }
+
+    &__header-button {
+        color: $color-secondary;
+    }
+
+    &__content {
+        padding: 2 * $spacing;
+    }
+
+    &__content-image {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }

@@ -1,15 +1,19 @@
 .button {
+    background-color: transparent;
     &.button--without-border {
-        background-color: transparent;
-        border: 2px solid transparent;
+        border: $stroke-width solid transparent;
         padding: 0;
 
         &:hover {
-            border-bottom: 2px solid currentColor;
+            border-bottom: $stroke-width solid currentColor;
         }
     }
 
     &.button--with-border {
-        border: 2px solid currentColor;
+        border: $stroke-width solid currentColor;
+
+        &:hover {
+            background-color: $color-tertiary;
+        }
     }
 }

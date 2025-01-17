@@ -4,6 +4,7 @@
 
 <template>
     <main class="builder-canvas">
-        <PageBlock />
+        <PageBlock blockType="image" />
+        <PageBlock blockType="text" />
     </main>
 </template>

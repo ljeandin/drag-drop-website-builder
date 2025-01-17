@@ -1,3 +1,6 @@
 .builder-canvas {
     padding: 2 * $spacing;
+    display: flex;
+    flex-direction: column;
+    gap: 2 * $spacing;
 }

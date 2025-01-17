@@ -2,5 +2,5 @@
     display: flex;
     padding: 2 * $spacing;
     gap: 2 * $spacing;
-    border-bottom: 1px solid $color-primary;
+    border-bottom: $stroke-width solid $color-primary;
 }
