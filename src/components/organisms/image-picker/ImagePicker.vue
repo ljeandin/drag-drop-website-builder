@@ -1,4 +1,6 @@
 <script setup>
+    import { defineEmits } from "vue";
+
     const predefinedImages = [
         {
             id: 1,
@@ -18,8 +20,10 @@
         },
     ];
 
+    const emit = defineEmits(["closeImagePicker"]);
+
     const onClickCloseButton = () => {
-        console.log("close");
+        emit("closeImagePicker");
     };
 </script>
 

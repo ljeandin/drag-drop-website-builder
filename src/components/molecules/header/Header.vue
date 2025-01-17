@@ -11,6 +11,7 @@
 
         blockStore.addBlock(newBlock);
     };
+
     const onClickAddImage = () => {
         const newBlock = {
             id: Date.now(),

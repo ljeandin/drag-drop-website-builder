@@ -1,17 +1,29 @@
 <script setup>
+    import { ref } from "vue";
+    import ImagePicker from "@/components/organisms/image-picker/ImagePicker.vue";
+
     defineProps({
+        blockId: { type: Number, required: true },
         blockType: { type: String, required: true },
         blockContent: { type: String, required: true },
     });
+
+    const isImagePickerOpen = ref(false);
+
+    const toggleImagePicker = () => {
+        isImagePickerOpen.value = !isImagePickerOpen.value;
+    };
 </script>
 
 <template>
     <div class="page-block">
         <div class="page-block__header">
             <button
+                v-if="blockType === 'image'"
                 class="page-block__header-button button button--with-border"
+                @click="toggleImagePicker()"
             >
-                Edit
+                Change image
             </button>
             <button
                 class="page-block__header-button button button--with-border"
@@ -41,4 +53,9 @@
             />
         </div>
     </div>
+
+    <ImagePicker
+        v-if="isImagePickerOpen"
+        @closeImagePicker="toggleImagePicker"
+    />
 </template>
