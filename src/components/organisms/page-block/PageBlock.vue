@@ -35,6 +35,10 @@
         resizeTextArea(textarea);
     };
 
+    const onDuplicateBlock = (blockId) => {
+        blockStore.duplicateBlock(blockId);
+    };
+
     const onDeleteBlock = (blockId) => {
         blockStore.deleteBlock(blockId);
     };
@@ -52,6 +56,7 @@
             </button>
             <button
                 class="page-block__header-button button button--with-border"
+                @click="onDuplicateBlock(blockId)"
             >
                 Duplicate
             </button>

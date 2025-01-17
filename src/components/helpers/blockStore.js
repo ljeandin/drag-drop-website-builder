@@ -42,4 +42,22 @@ export const blockStore = reactive({
             JSON.stringify(this.blocks)
         );
     },
+
+    duplicateBlock(blockId) {
+        const currentblock = this.blocks.find(
+            (block) => block.id === blockId
+        );
+
+        const newBlock = {
+            id: Date.now(),
+            type: currentblock.type,
+            content: currentblock.content,
+        };
+
+        this.blocks.push(newBlock);
+        localStorage.setItem(
+            "blockList",
+            JSON.stringify(this.blocks)
+        );
+    },
 });
