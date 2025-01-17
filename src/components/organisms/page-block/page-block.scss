@@ -17,6 +17,10 @@
         padding: 2 * $spacing;
     }
 
+    &__content-text:focus-visible {
+        outline-offset: $spacing;
+    }
+
     &__content-image {
         position: relative;
         left: 50%;

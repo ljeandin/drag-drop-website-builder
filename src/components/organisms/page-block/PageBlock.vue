@@ -25,7 +25,11 @@
         </div>
 
         <div class="page-block__content">
-            <p v-if="blockType === 'text'">
+            <p
+                v-if="blockType === 'text'"
+                class="page-block__content-text"
+                contenteditable="true"
+            >
                 Lorem ipsum dolor sit amet, consectetur
                 adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua.
