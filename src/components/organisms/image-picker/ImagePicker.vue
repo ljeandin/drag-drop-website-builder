@@ -1,5 +1,10 @@
 <script setup>
     import { defineEmits } from "vue";
+    import { blockStore } from "@/components/helpers/blockStore";
+
+    defineProps({
+        blockId: { type: Number, required: true },
+    });
 
     const predefinedImages = [
         {
@@ -25,6 +30,12 @@
     const onClickCloseButton = () => {
         emit("closeImagePicker");
     };
+
+    const onClickImageButton = (blockId, imageSrc) => {
+        blockStore.updateBlock(blockId, imageSrc);
+
+        emit("closeImagePicker");
+    };
 </script>
 
 <template>
@@ -44,6 +55,12 @@
                     v-for="image in predefinedImages"
                     :key="image.id"
                     class="image-picker-list__button"
+                    @click="
+                        onClickImageButton(
+                            blockId,
+                            image.src
+                        )
+                    "
                 >
                     <img
                         :src="image.src"

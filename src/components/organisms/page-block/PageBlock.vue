@@ -56,6 +56,7 @@
 
     <ImagePicker
         v-if="isImagePickerOpen"
+        :blockId="blockId"
         @closeImagePicker="toggleImagePicker"
     />
 </template>

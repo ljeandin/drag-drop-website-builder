@@ -18,4 +18,18 @@ export const blockStore = reactive({
             JSON.stringify(this.blocks)
         );
     },
+
+    updateBlock(blockId, content) {
+        const currentblock = this.blocks.find(
+            (block) => block.id === blockId
+        );
+
+        if (currentblock) {
+            currentblock.content = content;
+            localStorage.setItem(
+                "blockList",
+                JSON.stringify(this.blocks)
+            );
+        }
+    },
 });
