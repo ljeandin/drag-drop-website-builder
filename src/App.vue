@@ -1,9 +1,9 @@
 <script setup>
     import Header from "./components/molecules/header/Header.vue";
-    import PageBlock from "./components/organisms/page-block/PageBlock.vue";
+    import BuilderCanvas from "./components/organisms/builder-canvas/BuilderCanvas.vue";
 </script>
 
 <template>
     <Header />
-    <PageBlock />
+    <BuilderCanvas />
 </template>

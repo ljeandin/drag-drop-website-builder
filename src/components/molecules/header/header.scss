@@ -1,3 +1,6 @@
 .header {
-    border-bottom: 1px solid black;
+    display: flex;
+    padding: 2 * $spacing;
+    gap: 2 * $spacing;
+    border-bottom: 1px solid $color-primary;
 }

@@ -1,6 +1,10 @@
 <template>
     <header class="header">
-        <button>Add text</button>
-        <button>Add image</button>
+        <button class="button button--without-border">
+            Add text
+        </button>
+        <button class="button button--without-border">
+            Add image
+        </button>
     </header>
 </template>
