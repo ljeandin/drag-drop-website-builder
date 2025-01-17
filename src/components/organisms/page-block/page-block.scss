@@ -17,8 +17,12 @@
         padding: 2 * $spacing;
     }
 
-    &__content-text:focus-visible {
+    &__content-text {
+        border: none;
+        background-color: transparent;
+        resize: vertical;
         outline-offset: $spacing;
+        width: 100%;
     }
 
     &__content-image {
