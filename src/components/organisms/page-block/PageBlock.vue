@@ -75,20 +75,23 @@
     >
         <div class="page-block__header">
             <button
+                type="button"
                 v-if="blockType === 'image'"
-                class="page-block__header-button button button--with-border"
+                class="page-block__header-button button button--dark-bg"
                 @click="toggleImagePicker()"
             >
                 Change image
             </button>
             <button
-                class="page-block__header-button button button--with-border"
+                type="button"
+                class="page-block__header-button button button--dark-bg"
                 @click="onDuplicateBlock(blockId)"
             >
                 Duplicate
             </button>
             <button
-                class="page-block__header-button button button--with-border"
+                type="button"
+                class="page-block__header-button button button--dark-bg"
                 @click="onDeleteBlock(blockId)"
             >
                 Delete

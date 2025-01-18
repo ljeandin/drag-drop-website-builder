@@ -71,10 +71,6 @@ export const blockStore = reactive({
         );
 
         if (currentBlock) {
-            const draggedBlock = this.blocks.find(
-                (block) => blockId === block.id
-            );
-
             // extract the current block from the list
             this.blocks = [
                 ...this.blocks.filter(
@@ -94,11 +90,11 @@ export const blockStore = reactive({
                 this.blocks.splice(
                     nextBlockIndex,
                     0,
-                    draggedBlock
+                    currentBlock
                 );
             } else {
                 // else, insert it at the end
-                this.blocks.push(draggedBlock);
+                this.blocks.push(currentBlock);
             }
 
             this.saveBlocks();

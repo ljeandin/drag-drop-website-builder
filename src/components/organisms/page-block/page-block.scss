@@ -1,5 +1,7 @@
 .page-block {
     border: $stroke-width solid $color-primary;
+    width: 100%;
+    max-width: 80 * $spacing;
 
     &--dragging {
         opacity: 30%;

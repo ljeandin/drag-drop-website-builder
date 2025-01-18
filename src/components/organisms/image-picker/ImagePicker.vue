@@ -39,7 +39,8 @@
         <div class="image-picker__header">
             <p>Choose a new image</p>
             <button
-                class="button button--with-border"
+                type="button"
+                class="button button--dark-bg"
                 @click="$emit('closeImagePicker')"
             >
                 X
@@ -48,6 +49,7 @@
         <div class="image-picker__content-wrapper">
             <div class="image-picker-list">
                 <button
+                    type="button"
                     v-for="image in predefinedImages"
                     :key="image.id"
                     class="image-picker-list__button"

@@ -1,6 +1,12 @@
 .header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 2 * $spacing;
     gap: 2 * $spacing;
     border-bottom: $stroke-width solid $color-primary;
+    & > * {
+        display: flex;
+        gap: 2 * $spacing;
+    }
 }

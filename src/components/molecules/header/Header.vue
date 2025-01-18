@@ -26,17 +26,22 @@
 
 <template>
     <header class="header">
-        <button
-            class="button button--without-border"
-            @click="onClickAddText"
-        >
-            Add text
-        </button>
-        <button
-            class="button button--without-border"
-            @click="onClickAddImage"
-        >
-            Add image
-        </button>
+        <h1>Drag n' drop !</h1>
+        <div>
+            <button
+                type="button"
+                class="button"
+                @click="onClickAddText"
+            >
+                Add text
+            </button>
+            <button
+                type="button"
+                class="button"
+                @click="onClickAddImage"
+            >
+                Add image
+            </button>
+        </div>
     </header>
 </template>
