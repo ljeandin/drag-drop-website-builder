@@ -19,7 +19,7 @@ export const blockStore = reactive({
     },
 
     addBlock(block) {
-        this.blocks.push(block);
+        this.blocks.unshift(block);
         this.saveBlocks();
     },
 
@@ -45,13 +45,22 @@ export const blockStore = reactive({
         const currentblock = this.blocks.find(
             (block) => block.id === blockId
         );
+
         if (currentblock) {
+            const currentBlockIndex =
+                this.blocks.indexOf(currentblock);
             const newBlock = {
                 id: Date.now(),
                 type: currentblock.type,
                 content: currentblock.content,
             };
-            this.blocks.push(newBlock);
+
+            this.blocks.splice(
+                currentBlockIndex + 1,
+                0,
+                newBlock
+            );
+
             this.saveBlocks();
         }
     },
