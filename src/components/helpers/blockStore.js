@@ -66,20 +66,30 @@ export const blockStore = reactive({
     },
 
     reorderBlocks(blockId, nextBlockId) {
-        const currentBlockIndex = this.blocks.findIndex(
+        const currentBlock = this.blocks.find(
             (block) => block.id === blockId
         );
 
-        const nextBlockIndex = this.blocks.findIndex(
-            (block) => block.id === nextBlockId
-        );
-
-        if (currentBlockIndex !== -1) {
-            const [draggedBlock] = this.blocks.splice(
-                currentBlockIndex,
-                1
+        if (currentBlock) {
+            const draggedBlock = this.blocks.find(
+                (block) => blockId === block.id
             );
 
+            // extract the current block from the list
+            this.blocks = [
+                ...this.blocks.filter(
+                    (block) => blockId !== block.id
+                ),
+            ];
+
+            console.log(this.blocks);
+
+            const nextBlockIndex = this.blocks.findIndex(
+                (block) => block.id === nextBlockId
+            );
+
+            // if there is a bloc after the one that's dragging
+            // insert it there
             if (nextBlockIndex !== -1) {
                 this.blocks.splice(
                     nextBlockIndex,
@@ -87,8 +97,10 @@ export const blockStore = reactive({
                     draggedBlock
                 );
             } else {
+                // else, insert it at the end
                 this.blocks.push(draggedBlock);
             }
+
             this.saveBlocks();
         }
     },

@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, onMounted } from "vue";
+    import { ref, watch } from "vue";
     import { blockStore } from "@/components/helpers/blockStore";
     import PageBlock from "@/components/organisms/page-block/PageBlock.vue";
 
@@ -7,18 +7,19 @@
 
     let draggedBlockId = ref(null);
 
+    let siblingBlocks = ref(null);
+
     let nextSiblingElement = ref(null);
 
     const onDragStart = (blockElement) => {
-        draggedBlockId.value = parseInt(
-            blockElement.dataset.blockId
-        );
+        const blockId = blockElement.dataset.blockId;
+        draggedBlockId.value = parseInt(blockId);
 
-        const siblingBlocks = [
-            ...document.querySelectorAll(
-                ".js-page-block:not(.js-page-block-dragging)"
-            ),
-        ];
+        siblingBlocks.value = [
+            ...document.querySelectorAll(".js-page-block"),
+        ].filter(
+            (sibling) => sibling.dataset.blockId !== blockId
+        );
 
         const builderCanvas = blockElement.closest(
             ".js-builder-canvas"
@@ -35,17 +36,14 @@
         );
 
         builderCanvas.addEventListener("dragover", () => {
-            // finds the first sibling block where the mouse pointer
-            // is positioned in the top half or above that block
-            nextSiblingElement = siblingBlocks.find(
-                (sibling) => {
+            nextSiblingElement.value =
+                siblingBlocks.value.find((sibling) => {
                     return (
                         event.clientY <=
                         sibling.offsetTop +
                             sibling.offsetHeight / 2
                     );
-                }
-            );
+                });
 
             const draggingBlock = document.querySelector(
                 ".js-page-block-dragging"
@@ -55,14 +53,14 @@
                 .querySelector(".js-builder-canvas")
                 .insertBefore(
                     draggingBlock,
-                    nextSiblingElement
+                    nextSiblingElement.value
                 );
         });
     };
 
     const onDragEnd = () => {
         const nextSiblingId = parseInt(
-            nextSiblingElement?.dataset?.blockId
+            nextSiblingElement.value?.dataset?.blockId
         );
 
         if (draggedBlockId.value) {
