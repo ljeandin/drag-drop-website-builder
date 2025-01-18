@@ -9,9 +9,6 @@
 
     let nextSiblingElement = ref(null);
 
-    // finds the first sibling block where the mouse pointer
-    // is positioned in the top half or above that block
-
     const onDragStart = (blockElement) => {
         draggedBlockId.value = parseInt(
             blockElement.dataset.blockId
@@ -38,6 +35,8 @@
         );
 
         builderCanvas.addEventListener("dragover", () => {
+            // finds the first sibling block where the mouse pointer
+            // is positioned in the top half or above that block
             nextSiblingElement = siblingBlocks.find(
                 (sibling) => {
                     return (
@@ -59,10 +58,6 @@
                     nextSiblingElement
                 );
         });
-    };
-
-    const onDrop = (event) => {
-        event.preventDefault();
     };
 
     const onDragEnd = () => {

@@ -24,12 +24,12 @@ export const blockStore = reactive({
     },
 
     updateBlock(blockId, content) {
-        const currentblock = this.blocks.find(
+        const currentBlock = this.blocks.find(
             (block) => block.id === blockId
         );
 
-        if (currentblock) {
-            currentblock.content = content;
+        if (currentBlock) {
+            currentBlock.content = content;
             this.saveBlocks();
         }
     },
@@ -42,17 +42,17 @@ export const blockStore = reactive({
     },
 
     duplicateBlock(blockId) {
-        const currentblock = this.blocks.find(
+        const currentBlock = this.blocks.find(
             (block) => block.id === blockId
         );
 
-        if (currentblock) {
+        if (currentBlock) {
             const currentBlockIndex =
-                this.blocks.indexOf(currentblock);
+                this.blocks.indexOf(currentBlock);
             const newBlock = {
                 id: Date.now(),
-                type: currentblock.type,
-                content: currentblock.content,
+                type: currentBlock.type,
+                content: currentBlock.content,
             };
 
             this.blocks.splice(
@@ -67,10 +67,6 @@ export const blockStore = reactive({
 
     reorderBlocks(blockId, nextBlockId) {
         const currentBlockIndex = this.blocks.findIndex(
-            (block) => block.id === blockId
-        );
-
-        const currentblock = this.blocks.find(
             (block) => block.id === blockId
         );
 
