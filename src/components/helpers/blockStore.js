@@ -3,6 +3,13 @@ import { reactive } from "vue";
 export const blockStore = reactive({
     blocks: [],
 
+    saveBlocks() {
+        localStorage.setItem(
+            "blockList",
+            JSON.stringify(this.blocks)
+        );
+    },
+
     loadBlocks() {
         const storedblocks =
             localStorage.getItem("blockList");
@@ -13,10 +20,7 @@ export const blockStore = reactive({
 
     addBlock(block) {
         this.blocks.push(block);
-        localStorage.setItem(
-            "blockList",
-            JSON.stringify(this.blocks)
-        );
+        this.saveBlocks();
     },
 
     updateBlock(blockId, content) {
@@ -26,10 +30,7 @@ export const blockStore = reactive({
 
         if (currentblock) {
             currentblock.content = content;
-            localStorage.setItem(
-                "blockList",
-                JSON.stringify(this.blocks)
-            );
+            this.saveBlocks();
         }
     },
 
@@ -37,27 +38,53 @@ export const blockStore = reactive({
         this.blocks = this.blocks.filter(
             (block) => blockId !== block.id
         );
-        localStorage.setItem(
-            "blockList",
-            JSON.stringify(this.blocks)
-        );
+        this.saveBlocks();
     },
 
     duplicateBlock(blockId) {
         const currentblock = this.blocks.find(
             (block) => block.id === blockId
         );
+        if (currentblock) {
+            const newBlock = {
+                id: Date.now(),
+                type: currentblock.type,
+                content: currentblock.content,
+            };
+            this.blocks.push(newBlock);
+            this.saveBlocks();
+        }
+    },
 
-        const newBlock = {
-            id: Date.now(),
-            type: currentblock.type,
-            content: currentblock.content,
-        };
-
-        this.blocks.push(newBlock);
-        localStorage.setItem(
-            "blockList",
-            JSON.stringify(this.blocks)
+    reorderBlocks(blockId, nextBlockId) {
+        const currentBlockIndex = this.blocks.findIndex(
+            (block) => block.id === blockId
         );
+
+        const currentblock = this.blocks.find(
+            (block) => block.id === blockId
+        );
+
+        const nextBlockIndex = this.blocks.findIndex(
+            (block) => block.id === nextBlockId
+        );
+
+        if (currentBlockIndex !== -1) {
+            const [draggedBlock] = this.blocks.splice(
+                currentBlockIndex,
+                1
+            );
+
+            if (nextBlockIndex !== -1) {
+                this.blocks.splice(
+                    nextBlockIndex,
+                    0,
+                    draggedBlock
+                );
+            } else {
+                this.blocks.push(draggedBlock);
+            }
+            this.saveBlocks();
+        }
     },
 });

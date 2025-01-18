@@ -27,10 +27,6 @@
 
     const emit = defineEmits(["closeImagePicker"]);
 
-    const onClickCloseButton = () => {
-        emit("closeImagePicker");
-    };
-
     const onClickImageButton = (blockId, imageSrc) => {
         blockStore.updateBlock(blockId, imageSrc);
 
@@ -44,7 +40,7 @@
             <p>Choose a new image</p>
             <button
                 class="button button--with-border"
-                @click="onClickCloseButton()"
+                @click="$emit('closeImagePicker')"
             >
                 X
             </button>

@@ -1,6 +1,10 @@
 .page-block {
     border: $stroke-width solid $color-primary;
 
+    &--dragging {
+        opacity: 30%;
+    }
+
     &__header {
         display: flex;
         justify-content: flex-end;
@@ -24,6 +28,7 @@
         outline-offset: $spacing;
         width: 100%;
         padding: 0;
+        overflow: hidden;
     }
 
     &__content-image {

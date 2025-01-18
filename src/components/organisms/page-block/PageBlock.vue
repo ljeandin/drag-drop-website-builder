@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, onMounted } from "vue";
+    import { ref, onMounted, defineEmits } from "vue";
     import { blockStore } from "@/components/helpers/blockStore";
     import ImagePicker from "@/components/organisms/image-picker/ImagePicker.vue";
 
@@ -8,6 +8,11 @@
         blockType: { type: String, required: true },
         blockContent: { type: String, required: true },
     });
+
+    const emit = defineEmits([
+        "moveBlock",
+        "stopMovingBlock",
+    ]);
 
     const resizeTextArea = (textarea) => {
         textarea.style.height =
@@ -30,6 +35,18 @@
         isImagePickerOpen.value = !isImagePickerOpen.value;
     };
 
+    const isDragging = ref(false);
+
+    const onDragEvent = (blockElement) => {
+        isDragging.value = !isDragging.value;
+
+        if (isDragging.value === true) {
+            emit("moveBlock", blockElement);
+        } else {
+            emit("stopMovingBlock");
+        }
+    };
+
     const onEditText = (blockId, content, textarea) => {
         blockStore.updateBlock(blockId, content);
         resizeTextArea(textarea);
@@ -45,7 +62,17 @@
 </script>
 
 <template>
-    <div class="page-block">
+    <div
+        class="page-block js-page-block"
+        :class="{
+            'js-page-block-dragging page-block--dragging':
+                isDragging,
+        }"
+        :data-block-id="blockId"
+        draggable="true"
+        @dragstart="onDragEvent($event.target)"
+        @dragend="onDragEvent()"
+    >
         <div class="page-block__header">
             <button
                 v-if="blockType === 'image'"
